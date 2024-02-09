@@ -1,8 +1,8 @@
 import { useRef, useState } from "react";
 import "./Chessboard.css";
-import Tile from "../ChessBoardComponents/Tile/Tile";
-import { VERTICAL_AXIS, HORIZONTAL_AXIS, GRID_SIZE } from "../Constants";
-import { Piece, Position } from "../models";
+import Tile from "../Tile/Tile";
+import { VERTICAL_AXIS, HORIZONTAL_AXIS, GRID_SIZE } from "../../Constants";
+import { Piece, Position } from "../../models";
 
 interface Props {
   playMove: (piece: Piece, position: Position) => boolean;
@@ -104,53 +104,75 @@ export default function Chessboard({ playMove, pieces }: Props) {
     }
   }
   let listadder = [];
-  
-  let pawnW = '../images/pawn_w.png';
-  let pawnB = '../images/pawn_b.png';
-  let bishopW= '../images/bishop_w.png';
-  let bishopB= '../images/bishop_b.png';
-  let rookW= '../images/rook_w.png';
-  let rookB= '../images/rook_b.png';
-  let queenW= '../images/queen_w.png';
-  let queenB= '../images/queen_b.png';
-  let princeW= '../images/prince_w.png';
-  let princeB= '../images/prince_b.png';
-  let princessW= '../images/princess_w.png';
-  let princessB= '../images/princess_b.png';
-  let knightW= '../images/knight_w.png';
-  let knightB= '../images/knight_b.png';
-  let kingsW= '../images/king_w.png';
-  let kingsB= '../images/king_b.png';
-  
-  if (activePiece?.style.backgroundImage === pawnW || activePiece?.style.backgroundImage === pawnB) {
+
+  let pawnW = "../images/pawn_w.png";
+  let pawnB = "../images/pawn_b.png";
+  let bishopW = "../images/bishop_w.png";
+  let bishopB = "../images/bishop_b.png";
+  let rookW = "../images/rook_w.png";
+  let rookB = "../images/rook_b.png";
+  let queenW = "../images/queen_w.png";
+  let queenB = "../images/queen_b.png";
+  let princeW = "../images/prince_w.png";
+  let princeB = "../images/prince_b.png";
+  let princessW = "../images/princess_w.png";
+  let princessB = "../images/princess_b.png";
+  let knightW = "../images/knight_w.png";
+  let knightB = "../images/knight_b.png";
+  let kingsW = "../images/king_w.png";
+  let kingsB = "../images/king_b.png";
+
+  if (
+    activePiece?.style.backgroundImage === pawnW ||
+    activePiece?.style.backgroundImage === pawnB
+  ) {
     listadder.push("");
-      // console.log( "" );
-  }else if (activePiece?.style.backgroundImage === bishopW || activePiece?.style.backgroundImage === bishopB) {
+    // console.log( "" );
+  } else if (
+    activePiece?.style.backgroundImage === bishopW ||
+    activePiece?.style.backgroundImage === bishopB
+  ) {
     listadder.push("B");
-      // console.log("B");
-  }else if (activePiece?.style.backgroundImage === rookW || activePiece?.style.backgroundImage === rookB) {
+    // console.log("B");
+  } else if (
+    activePiece?.style.backgroundImage === rookW ||
+    activePiece?.style.backgroundImage === rookB
+  ) {
     listadder.push("R");
-      // console.log("R"); 
-  }else if (activePiece?.style.backgroundImage === queenW || activePiece?.style.backgroundImage === queenB) {
+    // console.log("R");
+  } else if (
+    activePiece?.style.backgroundImage === queenW ||
+    activePiece?.style.backgroundImage === queenB
+  ) {
     listadder.push("Q");
-      // console.log("Q");
-  }else if (activePiece?.style.backgroundImage === princeW || activePiece?.style.backgroundImage === princeB) {
+    // console.log("Q");
+  } else if (
+    activePiece?.style.backgroundImage === princeW ||
+    activePiece?.style.backgroundImage === princeB
+  ) {
     listadder.push("PC");
-      // console.log("PC");
-  }else if (activePiece?.style.backgroundImage === knightW || activePiece?.style.backgroundImage === knightB) {
+    // console.log("PC");
+  } else if (
+    activePiece?.style.backgroundImage === knightW ||
+    activePiece?.style.backgroundImage === knightB
+  ) {
     listadder.push("N");
-      // console.log("N");
-  }else if (activePiece?.style.backgroundImage === princessW || activePiece?.style.backgroundImage === princessB) {
+    // console.log("N");
+  } else if (
+    activePiece?.style.backgroundImage === princessW ||
+    activePiece?.style.backgroundImage === princessB
+  ) {
     listadder.push("PS");
-      // console.log("PS");
-  }else if (activePiece?.style.backgroundImage === kingsW || activePiece?.style.backgroundImage === kingsB) {
+    // console.log("PS");
+  } else if (
+    activePiece?.style.backgroundImage === kingsW ||
+    activePiece?.style.backgroundImage === kingsB
+  ) {
     listadder.push("K");
-      // console.log("K");
+    // console.log("K");
   }
-  
 
   let board = [];
-
 
   for (let j = VERTICAL_AXIS.length - 1; j >= 0; j--) {
     for (let i = 0; i < HORIZONTAL_AXIS.length; i++) {
@@ -159,18 +181,18 @@ export default function Chessboard({ playMove, pieces }: Props) {
       let image = piece ? piece.image : undefined;
 
       let currentSquare = String(VERTICAL_AXIS[j]) + String(HORIZONTAL_AXIS[i]);
-      
+
       let currentPiece =
-         activePiece != null
+        activePiece != null
           ? pieces.find((p) => p.samePosition(grabPosition))
           : undefined;
-        let highlight = currentPiece?.possibleMoves
+      let highlight = currentPiece?.possibleMoves
         ? currentPiece.possibleMoves.some((p) =>
             p.samePosition(new Position(i, j))
           )
         : false;
-        console.log(image);
-        
+      console.log(image);
+
       board.push(
         <Tile
           key={`${j},${i}`}
@@ -180,10 +202,14 @@ export default function Chessboard({ playMove, pieces }: Props) {
           highlight={highlight}
         />
       );
-     
-      let test1 = Boolean(currentPiece?.position.y === Number(VERTICAL_AXIS[j]))
-      let test2 = Boolean(currentPiece?.position.x === Number(HORIZONTAL_AXIS[i]))
-      
+
+      let test1 = Boolean(
+        currentPiece?.position.y === Number(VERTICAL_AXIS[j])
+      );
+      let test2 = Boolean(
+        currentPiece?.position.x === Number(HORIZONTAL_AXIS[i])
+      );
+
       if (test1 && test2) {
         console.log("ssss");
       }
