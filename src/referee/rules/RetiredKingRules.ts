@@ -190,5 +190,3 @@ export const getPossibleRetiredKingMoves = (retiredking: Piece, boardstate: Piec
 
   return possibleMoves;
 }
-
-
