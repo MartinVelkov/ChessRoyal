@@ -1,22 +1,30 @@
-import { useRoutes } from 'react-router-dom';
-import router from 'src/router';
-
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-
-import { CssBaseline } from '@mui/material';
-import ThemeProvider from './theme/ThemeProvider';
+import { Route, Routes } from "react-router-dom";
+import "./App.css";
+import { Navbar } from "./NavbarComponents/Navbar";
+import { About, Contact, Chess, Home } from "./NavbarComponents/pages";
+import SingIn from "./ChessBoardComponents/singIn/singIn";
+import LogIn from "./ChessBoardComponents/login/logIn";
 
 function App() {
-  const content = useRoutes(router);
-
   return (
-    <ThemeProvider>
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <CssBaseline />
-        {content}
-      </LocalizationProvider>
-    </ThemeProvider>
+    <div>
+      <div id="app">
+        <Navbar />
+        <Routes>
+          <Route path="/Home" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/Contact" element={<Contact />} />
+          <Route path="/Chess" element={<Chess />} />
+        </Routes>
+      </div>
+      <div>
+        <Routes>
+          <Route path="/LogIn" element={<LogIn />} />
+          <Route path="/SingIn" element={<SingIn />} />
+        </Routes>
+      </div>
+    </div>
   );
 }
+
 export default App;
