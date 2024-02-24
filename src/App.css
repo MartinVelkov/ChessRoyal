@@ -1,11 +1,11 @@
-/* #app {
-    display: grid;
-    place-content: center;
-    height: 100vh;
-    background-color: #202020;
-} */
-.App{
-    background-color: #fefefe;
+.App{    
     height: 100%;
     width: 100%;
+}
+.App .dark-theme{
+  background-color: #202020;
+}
+
+.App .light-theme{
+  background-color: #fefefe;
 }
