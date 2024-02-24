@@ -18,7 +18,7 @@ import {
   setPersistence,
   browserLocalPersistence
 } from "firebase/auth";
-const SignUp = () => {
+export const SignUp = () => {
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
