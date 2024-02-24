@@ -1,25 +1,95 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
 import { Navbar } from "./NavbarComponents/Navbar";
 import { About, Contact, Chess, Home } from "./NavbarComponents/pages";
-import SingIn from "./ChessBoardComponents/singIn/singIn";
+import SignUp from "./ChessBoardComponents/signUp";
 import LogIn from "./ChessBoardComponents/login/logIn";
+import { firebaseConfig } from "../src/database/firebase";
+import { initializeApp } from "firebase/app";
+import React, { useEffect, useState, useRef } from "react";
+import {
+  getAuth,
+  onAuthStateChanged,
+  browserLocalPersistence,
+  setPersistence,
+  User
+} from "firebase/auth";
+
+interface PrivateRouteProps {
+  element: JSX.Element;
+  user: User | null;
+}
+
+// Define PrivateRoute component
+const PrivateRoute: React.FC<PrivateRouteProps> = ({
+  element,
+  user,
+  ...rest
+}) => {
+  const [authResolved, setAuthResolved] = useState(false);
+
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      if (currentUser) {
+        await setPersistence(auth, browserLocalPersistence);
+      }
+      // Whether user is logged in or not, set authResolved to true
+      setAuthResolved(true);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  // Render nothing until auth state is resolved
+  if (!authResolved) {
+    return null;
+  }
+
+  return user ? element : <Navigate to="/login" />;
+};
 
 function App() {
+  const [user, setUser] = useState<User | null>(null);
+  initializeApp(firebaseConfig);
+
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      setUser(currentUser);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
   return (
     <div>
       <div id="app">
-        <div className="light-theme">
         <Navbar />
         <Routes>
-          <Route path="/Home" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/Contact" element={<Contact />} />
-          <Route path="/Chess" element={<Chess />} />
-          <Route path="/SingIn" element={<LogIn />} />
-          <Route path="/SingUp" element={<SingIn />} />
+          <Route
+            path="/home"
+            element={<PrivateRoute element={<Home />} user={user} />}
+          />
+          <Route
+            path="/about"
+            element={<PrivateRoute element={<About />} user={user} />}
+          />
+          <Route
+            path="/contact"
+            element={<PrivateRoute element={<Contact />} user={user} />}
+          />
+          <Route
+            path="/chess"
+            element={<PrivateRoute element={<Chess />} user={user} />}
+          />
+          <Route path="/signup" element={<SignUp />} />
         </Routes>
-        </div>
+      </div>
+      <div>
+        <Routes>
+          <Route path="/login" element={<LogIn />} />
+        </Routes>
       </div>
     </div>
   );
