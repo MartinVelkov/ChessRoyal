@@ -9,19 +9,17 @@ function App() {
   return (
     <div>
       <div id="app">
+        <div className="light-theme">
         <Navbar />
         <Routes>
           <Route path="/Home" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/Contact" element={<Contact />} />
           <Route path="/Chess" element={<Chess />} />
+          <Route path="/SingIn" element={<LogIn />} />
+          <Route path="/SingUp" element={<SingIn />} />
         </Routes>
-      </div>
-      <div>
-        <Routes>
-          <Route path="/LogIn" element={<LogIn />} />
-          <Route path="/SingIn" element={<SingIn />} />
-        </Routes>
+        </div>
       </div>
     </div>
   );
