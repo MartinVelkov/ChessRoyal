@@ -22,8 +22,8 @@ export default function Referee() {
     });
 
     // Listen for move events from the server
-    socketRef.current.on("move", (data: { piece: Piece; to: Position }) => {
-      playMove(data.piece, data.to);
+    socketRef.current.on("move", (data) => {
+      console.log("Received array: ", data);
     });
 
     return () => {
@@ -60,10 +60,7 @@ export default function Referee() {
     );
 
     if (socketRef.current) {
-      socketRef.current.emit("move", {
-        piece: playedPiece.clone(),
-        to: destination
-      });
+      socketRef.current.emit("move", board.pieces);
     }
 
     // playMove modifies the board thus we
