@@ -2,6 +2,7 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
 import { Navbar } from "./NavbarComponents/Navbar";
 import { About, Contact, Chess, Home } from "./NavbarComponents/pages";
+import { ChessPage } from "./ChessBoardComponents/Chesspage/chessPage";
 import SignUp from "./ChessBoardComponents/signUp";
 import LogIn from "./ChessBoardComponents/login/logIn";
 import { firebaseConfig } from "../src/database/firebase";
@@ -61,7 +62,7 @@ function App() {
 
     return () => unsubscribe();
   }, []);
-
+ debugger
   return (
     <div>
       <div id="app">
@@ -83,12 +84,22 @@ function App() {
             path="/chess"
             element={<PrivateRoute element={<Chess />} user={user} />}
           />
-          <Route path="/signup" element={<SignUp />} />
+          
         </Routes>
       </div>
-      <div>
+      <div id="not-app">
         <Routes>
-          <Route path="/login" element={<LogIn />} />
+          <Route 
+            path="/login" 
+            element={<LogIn />} 
+          />
+          <Route  
+            path="/signup" 
+            element={<SignUp />} />
+         <Route
+            path="/chesspage"
+            element={<PrivateRoute element={<ChessPage />} user={user} />}
+          />
         </Routes>
       </div>
     </div>

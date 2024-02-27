@@ -1,0 +1,5 @@
+div.Chessboard-Chesspage {
+    display: grid;
+    place-items: center;
+    height: 100vh; 
+}

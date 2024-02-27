@@ -6,6 +6,15 @@ import { Pawn } from "../../models/Pawn";
 import { PieceType, TeamType } from "../../Types";
 import Chessboard from "../Chessboard/Chessboard";
 import { io, Socket } from "socket.io-client";
+import { invertChessboard } from "../algorythm/algorythm";
+
+interface ChessPiece {
+  image: string;
+  position: any; 
+  type: string;
+  team: 'b' | 'w';
+  possibleMoves: number[];
+}
 
 export default function Referee() {
   const [board, setBoard] = useState<Board>(initialBoard.clone());
@@ -24,6 +33,12 @@ export default function Referee() {
     // Listen for move events from the server
     socketRef.current.on("move", (data) => {
       console.log("Received array: ", data);
+
+  
+    
+    const invertedChessboard: ChessPiece[] = invertChessboard(data);
+    console.log(invertedChessboard);
+    
     });
 
     return () => {

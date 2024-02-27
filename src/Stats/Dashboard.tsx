@@ -12,7 +12,7 @@ let dataForPie1 = 0;
 let dataForPie2 = 0;
 let dataForPie3 = 0;
 
-debugger
+
 
   for (let i = 0; i < 7; i++) {
     dataForPie0 += Number((pData1[i] / 7).toFixed(1));

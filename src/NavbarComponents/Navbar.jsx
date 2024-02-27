@@ -13,12 +13,6 @@ export const Navbar = () => {
       <div className="menu"></div>
       <ul>
         <li>
-          <NavLink to="/signup">Направете акаунт</NavLink>
-        </li>
-        <li>
-          <NavLink to="/login">Влезте в акаунт</NavLink>
-        </li>
-        <li>
           <NavLink to="/About">Статистики</NavLink>
         </li>
         <li>

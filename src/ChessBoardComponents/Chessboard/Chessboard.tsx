@@ -5,6 +5,8 @@ import { VERTICAL_AXIS, HORIZONTAL_AXIS, GRID_SIZE } from "../../Constants";
 import { Piece, Position } from "../../models";
 import { io, Socket } from "socket.io-client";
 
+let playerisWhite = true
+
 interface Props {
   playMove: (piece: Piece, position: Position) => boolean;
   pieces: Piece[];
@@ -174,47 +176,90 @@ export default function Chessboard({ playMove, pieces, socket }: Props) {
   }
 
   let board = [];
-
-  for (let j = VERTICAL_AXIS.length - 1; j >= 0; j--) {
-    for (let i = 0; i < HORIZONTAL_AXIS.length; i++) {
-      const number = j + i + 2;
-      const piece = pieces.find((p) => p.samePosition(new Position(i, j)));
-      let image = piece ? piece.image : undefined;
-
-      let currentSquare = String(VERTICAL_AXIS[j]) + String(HORIZONTAL_AXIS[i]);
-
-      let currentPiece =
-        activePiece != null
-          ? pieces.find((p) => p.samePosition(grabPosition))
-          : undefined;
-      let highlight = currentPiece?.possibleMoves
-        ? currentPiece.possibleMoves.some((p) =>
-            p.samePosition(new Position(i, j))
-          )
-        : false;
-
-      board.push(
-        <Tile
-          key={`${j},${i}`}
-          image={image}
-          names={currentSquare}
-          number={number}
-          highlight={highlight}
-        />
-      );
-
-      let test1 = Boolean(
-        currentPiece?.position.y === Number(VERTICAL_AXIS[j])
-      );
-      let test2 = Boolean(
-        currentPiece?.position.x === Number(HORIZONTAL_AXIS[i])
-      );
-
-      if (test1 && test2) {
-        console.log("ssss");
+  if (!playerisWhite) {
+    for (let j = 0; j < VERTICAL_AXIS.length; j++) {
+      for (let i = HORIZONTAL_AXIS.length - 1; i >= 0 ; i--) {
+        const number = j + i + 2;
+        const piece = pieces.find((p) => p.samePosition(new Position(i, j)));
+        let image = piece ? piece.image : undefined;
+  
+        let currentSquare = String(VERTICAL_AXIS[j]) + String(HORIZONTAL_AXIS[i]);
+  
+        let currentPiece =
+          activePiece != null
+            ? pieces.find((p) => p.samePosition(grabPosition))
+            : undefined;
+        let highlight = currentPiece?.possibleMoves
+          ? currentPiece.possibleMoves.some((p) =>
+              p.samePosition(new Position(i, j))
+            )
+          : false;
+  
+        board.push(
+          <Tile
+            key={`${j},${i}`}
+            image={image}
+            names={currentSquare}
+            number={number}
+            highlight={highlight}
+          />
+        );
+  
+        let test1 = Boolean(
+          currentPiece?.position.y === Number(VERTICAL_AXIS[j])
+        );
+        let test2 = Boolean(
+          currentPiece?.position.x === Number(HORIZONTAL_AXIS[i])
+        );
+  
+        if (test1 && test2) {
+          console.log("ssss");
+        }
+      }
+    }
+  } else {
+    for (let j = VERTICAL_AXIS.length - 1; j >= 0; j--) {
+      for (let i = 0; i < HORIZONTAL_AXIS.length ; i++) {
+        const number = j + i + 2;
+        const piece = pieces.find((p) => p.samePosition(new Position(i, j)));
+        let image = piece ? piece.image : undefined;
+  
+        let currentSquare = String(VERTICAL_AXIS[j]) + String(HORIZONTAL_AXIS[i]);
+  
+        let currentPiece =
+          activePiece != null
+            ? pieces.find((p) => p.samePosition(grabPosition))
+            : undefined;
+        let highlight = currentPiece?.possibleMoves
+          ? currentPiece.possibleMoves.some((p) =>
+              p.samePosition(new Position(i, j))
+            )
+          : false;
+  
+        board.push(
+          <Tile
+            key={`${j},${i}`}
+            image={image}
+            names={currentSquare}
+            number={number}
+            highlight={highlight}
+          />
+        );
+  
+        let test1 = Boolean(
+          currentPiece?.position.y === Number(VERTICAL_AXIS[j])
+        );
+        let test2 = Boolean(
+          currentPiece?.position.x === Number(HORIZONTAL_AXIS[i])
+        );
+  
+        if (test1 && test2) {
+          console.log("ssss");
+        }
       }
     }
   }
+  
 
   useEffect(() => {
     if (socket) {

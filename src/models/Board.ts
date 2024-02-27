@@ -4,6 +4,8 @@ import { Pawn } from "./Pawn";
 import { Piece } from "./Piece";
 import { Position } from "./Position";
 
+let playerisWhite = true
+
 export class Board {
     pieces: Piece[];
     totalTurns: number;
@@ -15,7 +17,12 @@ export class Board {
     }
 
     get currentTeam(): TeamType {
-        return this.totalTurns % 2 === 0 ? TeamType.OPPONENT : TeamType.OUR;
+
+        if (playerisWhite) {
+            return this.totalTurns % 2 === 0 ? TeamType.OPPONENT : TeamType.OUR;
+        } else{
+            return this.totalTurns % 2 === 0 ? TeamType.OUR : TeamType.OPPONENT;
+        }
     }
 
     calculateAllMoves() {
@@ -67,13 +74,13 @@ export class Board {
     
                 // Get the king of the cloned board
                 const clonedKing = simulatedBoard.pieces.find(p => p.isKing && p.team === simulatedBoard.currentTeam)!;
-                const clonedRetiredKing = simulatedBoard.pieces.find(p => p.isRetiredKing && p.team === simulatedBoard.currentTeam)!;
+                // const clonedRetiredKing = simulatedBoard.pieces.find(p => p.isRetiredKing && p.team === simulatedBoard.currentTeam)!;
                 
                 // Loop through all enemy pieces, update their possible moves
                 // And check if the current team's king will be in danger
                 for (const enemy of simulatedBoard.pieces.filter(p => p.team !== simulatedBoard.currentTeam)) {
                     enemy.possibleMoves = simulatedBoard.getValidMoves(enemy, simulatedBoard.pieces);
-                    const kingToCheck = this.totalTurns >= 10 ? clonedRetiredKing : clonedKing;
+                    const kingToCheck = this.totalTurns >= 10 ? clonedKing : clonedKing;
     
                     if (enemy.possibleMoves.some(m => m.samePosition(kingToCheck.position))) {
                         piece.possibleMoves = piece.possibleMoves?.filter(m => !m.samePosition(move));
