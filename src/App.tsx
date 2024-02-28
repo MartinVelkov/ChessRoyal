@@ -16,6 +16,8 @@ import {
   User
 } from "firebase/auth";
 
+
+
 interface PrivateRouteProps {
   element: JSX.Element;
   user: User | null;
@@ -50,6 +52,8 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({
   return user ? element : <Navigate to="/login" />;
 };
 
+ export let user1: User | null;
+
 function App() {
   const [user, setUser] = useState<User | null>(null);
   initializeApp(firebaseConfig);
@@ -62,7 +66,7 @@ function App() {
 
     return () => unsubscribe();
   }, []);
- debugger
+    
   return (
     <div>
       <div id="app">

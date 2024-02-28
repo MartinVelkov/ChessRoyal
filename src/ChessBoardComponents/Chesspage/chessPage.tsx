@@ -1,17 +1,17 @@
-
+import { ChessTimer } from "../Timer/3Min";
 import Referee from "../Referee/Referee";
-import './chessboard.css'
+import "./chessboard.css";
 
-export function ChessPage(){
-    return (
-        <div className="pager">
-            <div className="Chessboard-Chesspage">
-                <div>
-                {/* {PrivateRouteProps.user} */}
-                    
-                </div>
-                <Referee />
-            </div>
+export function ChessPage() {
+  return (
+    <div className="pager">
+      <div className="Chessboard-Chesspage">
+        <Referee />
+        
+      </div>
+      <div className="Timer">
+          <ChessTimer />
         </div>
-    )
+    </div>
+  );
 }

@@ -13,7 +13,7 @@ export const Chess = () => {
         </div>
 
         <div className="but">
-          <button className="Play-button"><Link className="Play" to="/ChessPage">Играй</Link></button>
+          <button id="Play-button" className="Play-button"><Link className="Play" to="/ChessPage" >Играй</Link></button>
           <Buttons className="buttons" margin-top="500px"></Buttons>
         </div>
       </div>

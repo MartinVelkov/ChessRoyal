@@ -8,11 +8,19 @@ import Chessboard from "../Chessboard/Chessboard";
 import { io, Socket } from "socket.io-client";
 import { invertChessboard } from "../algorythm/algorythm";
 
+interface Player {
+  name: any;
+  eloBlits: number;
+  eloBullet: number;
+  eloRapid: number;
+  eloClassic: number;
+}
+
 interface ChessPiece {
   image: string;
-  position: any; 
+  position: any;
   type: string;
-  team: 'b' | 'w';
+  team: "b" | "w";
   possibleMoves: number[];
 }
 
@@ -23,22 +31,52 @@ export default function Referee() {
   const checkmateModalRef = useRef<HTMLDivElement>(null);
   const socketRef = useRef<Socket | null>(null);
 
+  console.log("Marto test", board);
+
   useEffect(() => {
     socketRef.current = io("https://chess-api.noit.eu"); // Change the URL to your server
+    const socket = socketRef.current;
+    debugger
 
-    socketRef.current.on("connect", () => {
+    document.getElementById("Play-button")?.addEventListener("click", () => {
+      console.log("testing a button");
+      // Emit 'play' event when the button is clicked
+      socket.emit("play", "PlayerName"); // You can replace 'PlayerName' with the actual player name
+    });
+
+    socket.on("connect", () => {
       console.log("connected!");
+      console.log("New player connected: ", socket.id);
+
+      // When play button is pressed
+      socket.on("play", (playerName: string) => {
+        console.log(`${playerName} pressed the play button.`);
+        // Notify other player that someone has pressed the play button
+        // socket.emit('playPressed', playerName);
+      });
+      console.log("first Socket failed");
+      
+      // Handle 'playPressed' event from the server
+      socket.on("playPressed", (playerName: string) => {
+        console.log(`${playerName} pressed the play button.`);
+      });
+
+      console.log("second Socket failed");
+
+      // Example logic to handle playing the game
+      socket.on("startGame", (players: Player[]) => {
+        const [player1, player2] = players;
+        // Emit the winner to both players
+      });
+      console.log("third Socket failed");
     });
 
     // Listen for move events from the server
     socketRef.current.on("move", (data) => {
       console.log("Received array: ", data);
 
-  
-    
-    const invertedChessboard: ChessPiece[] = invertChessboard(data);
-    console.log(invertedChessboard);
-    
+      const invertedChessboard: ChessPiece[] = invertChessboard(data);
+      console.log(invertedChessboard);
     });
 
     return () => {

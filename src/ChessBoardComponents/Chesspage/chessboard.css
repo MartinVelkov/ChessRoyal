@@ -1,5 +1,17 @@
+.pager{
+    display: grid;
+    grid-template-columns: 1250px 500px; /* Defines two columns 1250px*/
+    grid-template-rows: 100px 300px; /* Defines two rows */
+    
+}
 div.Chessboard-Chesspage {
     display: grid;
-    place-items: center;
-    height: 100vh; 
+    place-items: start;
+    height: 100%; 
+    margin-left: 5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+.Timer{
+    justify-content: end
 }

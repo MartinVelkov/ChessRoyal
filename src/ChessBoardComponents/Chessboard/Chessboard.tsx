@@ -20,6 +20,16 @@ export default function Chessboard({ playMove, pieces, socket }: Props) {
   );
   const chessboardRef = useRef<HTMLDivElement>(null);
 
+  const handleColorChange = () => {
+    const whiteColor = prompt("Enter new color for white tiles:")
+    const blackColor = prompt("Enter new color for black tiles:") 
+    const whiteTiles = document.querySelectorAll(".white-tile") as NodeListOf<HTMLElement>;
+    const blackTiles = document.querySelectorAll(".black-tile") as NodeListOf<HTMLElement>;
+
+    whiteTiles.forEach(tile => (tile.style.backgroundColor = whiteColor));
+    blackTiles.forEach(tile => (tile.style.backgroundColor = blackColor));
+  };
+
   function grabPiece(e: React.MouseEvent) {
     const element = e.target as HTMLElement;
     const chessboard = chessboardRef.current;
@@ -277,8 +287,26 @@ export default function Chessboard({ playMove, pieces, socket }: Props) {
     }
   }, [socket, playMove]);
 
+ 
+  const tileColor = number % 2 === 0 ? "black-tile" : "white-tile";
+
+      board.push(
+        <Tile
+          key={${j},${i}}
+          image={image}
+          names={currentSquare}
+          number={number}
+          highlight={highlight}
+          tileColor={tileColor}
+        />
+      );
+   
+
   return (
     <>
+      <div>
+        <img src="" alt="Change Tile Colors" onClick={handleColorChange} />
+      </div>
       <div
         onMouseMove={(e) => movePiece(e)}
         onMouseDown={(e) => grabPiece(e)}
@@ -289,5 +317,5 @@ export default function Chessboard({ playMove, pieces, socket }: Props) {
         {board}
       </div>
     </>
-  );
-}
+  ); 
+  }
