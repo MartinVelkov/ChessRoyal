@@ -1,8 +1,9 @@
-import { useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import "./Chessboard.css";
 import Tile from "../Tile/Tile";
 import { VERTICAL_AXIS, HORIZONTAL_AXIS, GRID_SIZE } from "../../Constants";
 import { Piece, Position } from "../../models";
+
 
 interface Props {
   playMove: (piece: Piece, position: Position) => boolean;
@@ -16,6 +17,16 @@ export default function Chessboard({ playMove, pieces }: Props) {
   );
   const chessboardRef = useRef<HTMLDivElement>(null);
 
+  const handleColorChange = () => {
+    const whiteColor = prompt("Enter new color for white tiles:") || "#ebecd0";
+    const blackColor = prompt("Enter new color for black tiles:") || "#779556";
+    const whiteTiles = document.querySelectorAll(".white-tile") as NodeListOf<HTMLElement>;
+    const blackTiles = document.querySelectorAll(".black-tile") as NodeListOf<HTMLElement>;
+  
+    whiteTiles.forEach(tile => (tile.style.backgroundColor = whiteColor));
+    blackTiles.forEach(tile => (tile.style.backgroundColor = blackColor));
+  };
+  
   function grabPiece(e: React.MouseEvent) {
     const element = e.target as HTMLElement;
     const chessboard = chessboardRef.current;
@@ -91,9 +102,9 @@ export default function Chessboard({ playMove, pieces }: Props) {
       const currentPiece = pieces.find((p) => p.samePosition(grabPosition));
 
       if (currentPiece) {
-        let succes = playMove(currentPiece.clone(), new Position(x, y));
+        let success = playMove(currentPiece.clone(), new Position(x, y));
 
-        if (!succes) {
+        if (!success) {
           //RESETS THE PIECE POSITION
           activePiece.style.position = "relative";
           activePiece.style.removeProperty("top");
@@ -103,72 +114,21 @@ export default function Chessboard({ playMove, pieces }: Props) {
       setActivePiece(null);
     }
   }
-  let listadder = [];
-  
-  let pawnW = 'url("assets/images/pawn_w.png")';
-  let pawnB = 'url("assets/images/pawn_b.png")';
-  let bishopW= 'url("assets/images/bishop_w.png")';
-  let bishopB= 'url("assets/images/bishop_b.png")';
-  let rookW= 'url("assets/images/rook_w.png")';
-  let rookB= 'url("assets/images/rook_b.png")';
-  let queenW= 'url("assets/images/queen_w.png")';
-  let queenB= 'url("assets/images/queen_b.png")';
-  let princeW= 'url("assets/images/prince_w.png")';
-  let princeB= 'url("assets/images/prince_b.png")';
-  let princessW= 'url("assets/images/princess_w.png")';
-  let princessB= 'url("assets/images/princess_b.png")';
-  let knightW= 'url("assets/images/knight_w.png")';
-  let knightB= 'url("assets/images/knight_b.png")';
-  let kingsW= 'url("assets/images/king_w.png")';
-  let kingsB= 'url("assets/images/king_b.png")';
-  
-  if (activePiece?.style.backgroundImage === pawnW || activePiece?.style.backgroundImage === pawnB) {
-    listadder.push("");
-      // console.log( "" );
-  }else if (activePiece?.style.backgroundImage === bishopW || activePiece?.style.backgroundImage === bishopB) {
-    listadder.push("B");
-      // console.log("B");
-  }else if (activePiece?.style.backgroundImage === rookW || activePiece?.style.backgroundImage === rookB) {
-    listadder.push("R");
-      // console.log("R"); 
-  }else if (activePiece?.style.backgroundImage === queenW || activePiece?.style.backgroundImage === queenB) {
-    listadder.push("Q");
-      // console.log("Q");
-  }else if (activePiece?.style.backgroundImage === princeW || activePiece?.style.backgroundImage === princeB) {
-    listadder.push("PC");
-      // console.log("PC");
-  }else if (activePiece?.style.backgroundImage === knightW || activePiece?.style.backgroundImage === knightB) {
-    listadder.push("N");
-      // console.log("N");
-  }else if (activePiece?.style.backgroundImage === princessW || activePiece?.style.backgroundImage === princessB) {
-    listadder.push("PS");
-      // console.log("PS");
-  }else if (activePiece?.style.backgroundImage === kingsW || activePiece?.style.backgroundImage === kingsB) {
-    listadder.push("K");
-      // console.log("K");
-  }
-  
 
-  let board = [];
-
-
+  const board = [];
   for (let j = VERTICAL_AXIS.length - 1; j >= 0; j--) {
     for (let i = 0; i < HORIZONTAL_AXIS.length; i++) {
       const number = j + i + 2;
       const piece = pieces.find((p) => p.samePosition(new Position(i, j)));
-      let image = piece ? piece.image : undefined;
-
-      let currentSquare = String(VERTICAL_AXIS[j]) + String(HORIZONTAL_AXIS[i]);
-      
-      let currentPiece =
-         activePiece != null
-          ? pieces.find((p) => p.samePosition(grabPosition))
-          : undefined;
-        let highlight = currentPiece?.possibleMoves
-        ? currentPiece.possibleMoves.some((p) =>
-            p.samePosition(new Position(i, j))
-          )
+      const image = piece ? piece.image : undefined;
+      const currentSquare = String(VERTICAL_AXIS[j]) + String(HORIZONTAL_AXIS[i]);
+      const currentPiece =
+        activePiece != null ? pieces.find((p) => p.samePosition(grabPosition)) : undefined;
+      const highlight = currentPiece?.possibleMoves
+        ? currentPiece.possibleMoves.some((p) => p.samePosition(new Position(i, j)))
         : false;
+
+      const tileColor = number % 2 === 0 ? "black-tile" : "white-tile";
 
       board.push(
         <Tile
@@ -177,20 +137,17 @@ export default function Chessboard({ playMove, pieces }: Props) {
           names={currentSquare}
           number={number}
           highlight={highlight}
+          tileColor={tileColor}
         />
       );
-     
-      let test1 = Boolean(currentPiece?.position.y === Number(VERTICAL_AXIS[j]))
-      let test2 = Boolean(currentPiece?.position.x === Number(HORIZONTAL_AXIS[i]))
-      
-      if (test1 && test2) {
-        console.log("ssss");
-      }
     }
   }
 
   return (
     <>
+      <div>
+        <img src="" alt="Change Tile Colors" onClick={handleColorChange} />
+      </div>
       <div
         onMouseMove={(e) => movePiece(e)}
         onMouseDown={(e) => grabPiece(e)}
