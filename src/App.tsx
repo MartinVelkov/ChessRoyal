@@ -16,8 +16,6 @@ import {
   User
 } from "firebase/auth";
 
-
-
 interface PrivateRouteProps {
   element: JSX.Element;
   user: User | null;
@@ -52,7 +50,7 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({
   return user ? element : <Navigate to="/login" />;
 };
 
- export let user1: User | null;
+export let user1: User | null;
 
 function App() {
   const [user, setUser] = useState<User | null>(null);
@@ -66,42 +64,41 @@ function App() {
 
     return () => unsubscribe();
   }, []);
-    
+
   return (
     <div>
       <div className="app">
         <div>
-         <Navbar />
-        <Routes>
-          <Route
-            path="/home"
-            element={<PrivateRoute element={<Home />} user={user} />}
-          />
-          <Route
-            path="/about"
-            element={<PrivateRoute element={<About />} user={user} />}
-          />
-          <Route
-            path="/contact"
-            element={<PrivateRoute element={<Contact />} user={user} />}
-          />
-          <Route
-            path="/chess"
-            element={<PrivateRoute element={<Chess />} user={user} />}
-          />
-        </Routes>
+          <Navbar />
+          <Routes>
+            <Route
+              path="/home"
+              element={<PrivateRoute element={<Home />} user={user} />}
+            />
+            <Route
+              path="/about"
+              element={<PrivateRoute element={<About />} user={user} />}
+            />
+            <Route
+              path="/contact"
+              element={<PrivateRoute element={<Contact />} user={user} />}
+            />
+            <Route
+              path="/chess"
+              element={<PrivateRoute element={<Chess />} user={user} />}
+            />
+          </Routes>
         </div>
       </div>
       <div id="not-app">
         <Routes>
-          <Route 
-            path="/login" 
-            element={<LogIn />} 
+          <Route
+            path="/"
+            element={<Navigate to="/login" />} // Redirect "/" to "/login"
           />
-          <Route  
-            path="/signup" 
-            element={<SignUp />} />
-         <Route
+          <Route path="/login" element={<LogIn />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route
             path="/chesspage"
             element={<PrivateRoute element={<ChessPage />} user={user} />}
           />
