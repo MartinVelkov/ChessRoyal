@@ -1,5 +1,32 @@
-.shapeOUR{
+.shapeOPN {
+  text-align: center;
+  color: aliceblue;
   height: 50px;
-  width: 100px;
+  width: 80px;
   background-color: #555;
+}
+#OPN{
+    width: 0;
+	height: 0;
+	border-left: 40px solid transparent;
+	border-right: 40px solid transparent;
+	border-bottom: 50px solid  #555;
+}
+
+.shapeOUR {
+  margin-top: 30px;
+  text-align: center;
+  color: aliceblue;
+  height: 50px;
+  width: 80px;
+  background-color: #555;
+}
+
+#OUR{ 
+    
+    width: 0;
+	height: 0;
+	border-left: 40px solid transparent;
+	border-right: 40px solid transparent;
+	border-top: 50px solid  #555;
 }

@@ -36,7 +36,6 @@ export default function Referee() {
   useEffect(() => {
     socketRef.current = io("https://chess-api.noit.eu"); // Change the URL to your server
     const socket = socketRef.current;
-    debugger
 
     document.getElementById("Play-button")?.addEventListener("click", () => {
       console.log("testing a button");

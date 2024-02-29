@@ -9,9 +9,76 @@ div.Chessboard-Chesspage {
     place-items: start;
     height: 100%; 
     margin-left: 5%;
-    margin-top: 1%;
+    margin-top: 3%;
     margin-bottom: 1%;
 }
 .Timer{
+    margin-top: 65%;
     justify-content: end
+}
+
+@media only screen and (max-width: 1440px){
+    .pager{
+        display: grid;
+        grid-template-columns: 1100px 340px; /* Defines two columns 1250px*/
+        grid-template-rows: 110px 240px; /* Defines two rows */
+    }
+    .Timer{
+        margin-left: 15%;
+        margin-top: 90%;
+        justify-content: end
+    }
+    div.Chessboard-Chesspage {
+        display: grid;
+        place-items: start;
+        height: 100%; 
+        margin-left: 5%;
+        margin-top: 1.5%;
+        margin-bottom: 1%;
+    }
+}
+
+@media only screen and (min-width: 1680px){
+    .pager{
+        display: grid;
+        grid-template-columns: 1180px 500px; /* Defines two columns 1250px*/
+        grid-template-rows: 100px 300px; /* Defines two rows */
+    }
+
+    .Timer{
+        margin-left: 2%;
+        margin-top: 60%;
+        justify-content: end
+    }
+
+    div.Chessboard-Chesspage {
+        display: grid;
+        place-items: start;
+        height: 100%; 
+        margin-left: 5%;
+        margin-top: 1.5%;
+        margin-bottom: 1%;
+    }
+}
+
+@media only screen and (min-width: 1920px){
+    .pager{
+        display: grid;
+        grid-template-columns: 1250px 500px; /* Defines two columns 1250px*/
+        grid-template-rows: 100px 300px; /* Defines two rows */   
+    }
+    .Timer{
+        margin-left: 2%;
+        margin-top: 70%;
+        justify-content: end
+    }
+
+    div.Chessboard-Chesspage {
+        display: grid;
+        place-items: start;
+        height: 100%; 
+        margin-left: 5%;
+        margin-top: 5%;
+        margin-bottom: 1%;
+    }
 }

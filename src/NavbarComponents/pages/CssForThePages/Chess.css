@@ -33,11 +33,77 @@ div.but .buttons{
 
 .paged{
     display: grid;
-    grid-template-columns: 1700px 800px; /* Defines two columns */
-    grid-template-rows: 0px 1100px; /* Defines two rows */
+    grid-template-columns: 1700px 800px; 
+    grid-template-rows: 0px 1100px;
 }
 
-@media only screen and (max-width: 1920px){
+@media only screen and (min-width: 1440px){
+    .Chessboard {
+        padding-top: 20px ;
+        margin-bottom: 25px;
+        padding-left: 50px;
+        display: grid;
+        place-content: start;
+        height: 800px;
+    }
+    
+    .Play-button{
+        margin-top: 300px ;
+        background-color: #007bff;
+        color: blue;
+        padding: 15px 45px 40px 45px;
+        font-size: 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 300px;
+        height: 40px;
+    }
+    .Play-button &:hover{
+        background-color: #0056b3;
+    }
+
+    .paged{
+        display: grid;
+        grid-template-columns: 1100px 340px; /* Defines two columns 1250px*/
+        grid-template-rows: 0px 800px; /* Defines two rows */
+    }
+}
+
+@media only screen and (min-width: 1680px){
+    .Chessboard {
+        padding-top: 20px;
+        margin-bottom: 10px;
+        padding-left: 30px;
+        display: grid;
+        place-content: start;
+        height: 800px;
+    }
+    
+    .Play-button{
+        margin-top: 350px ;
+        background-color: #007bff;
+        color: white;
+        padding: 15px 55px 45px 55px;
+        font-size: 22px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 300px;
+        height: 40px;
+    }
+    .Play-button &:hover{
+        background-color: #0056b3;
+    }
+
+    .paged{
+        display: grid;
+        grid-template-columns: 1200px 300px; /* Defines two columns 1250px*/
+        grid-template-rows: 0px 600px; /* Defines two rows */
+    }
+}
+
+@media only screen and (min-width: 1920px){
     .Chessboard {
         padding-top: 50px ;
         margin-bottom: 50px;

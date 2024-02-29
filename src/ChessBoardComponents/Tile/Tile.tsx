@@ -21,7 +21,7 @@ export default function Tile({ number, names, highlight, image, tileColor }: Pro
 
   return (
     <div className={className}>
-      {image && <div style={{ backgroundImage: url(${image}) }} className="chess-piece"></div>}
+      {image && <div style={{ backgroundImage: `url(${image})` }} className="chess-piece"></div>}
     </div>
   );
 }

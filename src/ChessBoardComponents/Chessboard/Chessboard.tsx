@@ -18,14 +18,15 @@ export default function Chessboard({ playMove, pieces, socket }: Props) {
   const [grabPosition, setGrabPosition] = useState<Position>(
     new Position(-1, -1)
   );
+
   const chessboardRef = useRef<HTMLDivElement>(null);
 
   const handleColorChange = () => {
-    const whiteColor = prompt("Enter new color for white tiles:")
-    const blackColor = prompt("Enter new color for black tiles:") 
+    const whiteColor = prompt("Enter new color for white tiles:") || "#ebecd0";
+    const blackColor = prompt("Enter new color for black tiles:") || "#779556";
     const whiteTiles = document.querySelectorAll(".white-tile") as NodeListOf<HTMLElement>;
     const blackTiles = document.querySelectorAll(".black-tile") as NodeListOf<HTMLElement>;
-
+  
     whiteTiles.forEach(tile => (tile.style.backgroundColor = whiteColor));
     blackTiles.forEach(tile => (tile.style.backgroundColor = blackColor));
   };
@@ -186,6 +187,7 @@ export default function Chessboard({ playMove, pieces, socket }: Props) {
   }
 
   let board = [];
+
   if (!playerisWhite) {
     for (let j = 0; j < VERTICAL_AXIS.length; j++) {
       for (let i = HORIZONTAL_AXIS.length - 1; i >= 0 ; i--) {
@@ -204,7 +206,9 @@ export default function Chessboard({ playMove, pieces, socket }: Props) {
               p.samePosition(new Position(i, j))
             )
           : false;
-  
+
+          const tileColor = number % 2 === 0 ? "black-tile" : "white-tile";
+
         board.push(
           <Tile
             key={`${j},${i}`}
@@ -212,6 +216,7 @@ export default function Chessboard({ playMove, pieces, socket }: Props) {
             names={currentSquare}
             number={number}
             highlight={highlight}
+            tileColor={tileColor}
           />
         );
   
@@ -227,6 +232,7 @@ export default function Chessboard({ playMove, pieces, socket }: Props) {
         }
       }
     }
+
   } else {
     for (let j = VERTICAL_AXIS.length - 1; j >= 0; j--) {
       for (let i = 0; i < HORIZONTAL_AXIS.length ; i++) {
@@ -246,6 +252,8 @@ export default function Chessboard({ playMove, pieces, socket }: Props) {
             )
           : false;
   
+          const tileColor = number % 2 === 0 ? "black-tile" : "white-tile";
+
         board.push(
           <Tile
             key={`${j},${i}`}
@@ -253,6 +261,7 @@ export default function Chessboard({ playMove, pieces, socket }: Props) {
             names={currentSquare}
             number={number}
             highlight={highlight}
+            tileColor={tileColor}
           />
         );
   
@@ -287,26 +296,8 @@ export default function Chessboard({ playMove, pieces, socket }: Props) {
     }
   }, [socket, playMove]);
 
- 
-  const tileColor = number % 2 === 0 ? "black-tile" : "white-tile";
-
-      board.push(
-        <Tile
-          key={${j},${i}}
-          image={image}
-          names={currentSquare}
-          number={number}
-          highlight={highlight}
-          tileColor={tileColor}
-        />
-      );
-   
-
   return (
     <>
-      <div>
-        <img src="" alt="Change Tile Colors" onClick={handleColorChange} />
-      </div>
       <div
         onMouseMove={(e) => movePiece(e)}
         onMouseDown={(e) => grabPiece(e)}
@@ -316,6 +307,9 @@ export default function Chessboard({ playMove, pieces, socket }: Props) {
       >
         {board}
       </div>
+      <div>
+        <img src="" alt="Change Tile Colors" onClick={handleColorChange} />
+      </div>
     </>
-  ); 
-  }
+  );
+}

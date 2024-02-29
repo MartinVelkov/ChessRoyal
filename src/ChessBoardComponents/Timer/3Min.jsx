@@ -58,18 +58,23 @@ export function ChessTimer() {
   return (
     <div>
       <div>
+        <div id='OPN'></div>
+
         <div className='shapeOPN'>
-         <span>Player 1: {formatTime(player1Time)}</span>
+         <span>{formatTime(player1Time)}</span>
         </div>
+  
         <div className='shapeOUR'>
-         <span>Player 2: {formatTime(player2Time)}</span>
+          <span>{formatTime(player2Time)}</span>
         </div>
+
+        <div id='OUR'></div> 
       </div>
-      <div>
+      {/* <div> */}
         {/* <span>Current Player: {isPlayer1Turn ? 'Player 1' : 'Player 2'}</span> */}
-        <button onClick={handleStartPause}>{isRunning ? 'Pause' : 'Start'}</button>
-        <button onClick={handleMovePiece}>Move Piece</button>
-      </div>
+        {/* <button onClick={handleStartPause}>{isRunning ? 'Pause' : 'Start'}</button>
+        <button onClick={handleMovePiece}>Move Piece</button> */}
+      {/* </div> */}
     </div>
   );
 }

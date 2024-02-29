@@ -69,8 +69,9 @@ function App() {
     
   return (
     <div>
-      <div id="app">
-        <Navbar />
+      <div className="app">
+        <div>
+         <Navbar />
         <Routes>
           <Route
             path="/home"
@@ -88,8 +89,8 @@ function App() {
             path="/chess"
             element={<PrivateRoute element={<Chess />} user={user} />}
           />
-          
         </Routes>
+        </div>
       </div>
       <div id="not-app">
         <Routes>
