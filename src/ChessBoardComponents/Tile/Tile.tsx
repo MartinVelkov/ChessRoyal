@@ -11,6 +11,7 @@ interface Props {
 
 export default function Tile({ number, names, highlight, image, tileColor }: Props) {
   const className: string = [
+    names,
     "tile",
     number % 2 === 0 ? "black-tile" : "white-tile",
     highlight && "tile-highlight",

@@ -46,6 +46,7 @@ export default function Referee() {
     socket.on("connect", () => {
       console.log("connected!");
       console.log("New player connected: ", socket.id);
+      
 
       // When play button is pressed
       socket.on("play", (playerName: string) => {

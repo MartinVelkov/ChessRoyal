@@ -38,7 +38,7 @@ div.Chessboard-Chesspage {
     }
 }
 
-@media only screen and (min-width: 1680px){
+@media only screen and (max-width: 1680px){
     .pager{
         display: grid;
         grid-template-columns: 1180px 500px; /* Defines two columns 1250px*/
@@ -61,7 +61,7 @@ div.Chessboard-Chesspage {
     }
 }
 
-@media only screen and (min-width: 1920px){
+@media only screen and (max-width: 1920px){
     .pager{
         display: grid;
         grid-template-columns: 1250px 500px; /* Defines two columns 1250px*/

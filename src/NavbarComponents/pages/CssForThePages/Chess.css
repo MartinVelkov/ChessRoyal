@@ -37,7 +37,7 @@ div.but .buttons{
     grid-template-rows: 0px 1100px;
 }
 
-@media only screen and (min-width: 1440px){
+@media only screen and (max-width: 1440px){
     .Chessboard {
         padding-top: 20px ;
         margin-bottom: 25px;
@@ -70,7 +70,7 @@ div.but .buttons{
     }
 }
 
-@media only screen and (min-width: 1680px){
+@media only screen and (max-width: 1680px){
     .Chessboard {
         padding-top: 20px;
         margin-bottom: 10px;
@@ -103,7 +103,7 @@ div.but .buttons{
     }
 }
 
-@media only screen and (min-width: 1920px){
+@media only screen and (max-width: 1920px){
     .Chessboard {
         padding-top: 50px ;
         margin-bottom: 50px;
