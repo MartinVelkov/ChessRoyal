@@ -10,6 +10,12 @@ export const Profile = () => {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
+  const handleLogOut = async () => {
+   const keyLocalStorage = Object.keys(localStorage).filter((obj) =>
+     obj.startsWith("firebase:authUser")
+   );
+   localStorage.removeItem(keyLocalStorage[0]);
+ };
 
 
  const handleMenu = (event) => {
@@ -26,7 +32,7 @@ export const Profile = () => {
           size="large"
           aria-label="account of current user"
           aria-controls="menu-appbar"
-          aria-haspopup="true"
+          aria-haspopup="false"
           onClick={handleMenu}
           color="inherit"
         >
@@ -47,9 +53,8 @@ export const Profile = () => {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          <MenuItem onClick={handleClose}>Profile</MenuItem>
-          <MenuItem onClick={handleClose}>My account</MenuItem>
-          <MenuItem onClick={handleClose}>Log Out</MenuItem>
+          <MenuItem onClick={handleClose}>Профил</MenuItem>
+          <MenuItem onClick={handleLogOut}>Излез от акаунта</MenuItem>
         </Menu>
       </div>
     )

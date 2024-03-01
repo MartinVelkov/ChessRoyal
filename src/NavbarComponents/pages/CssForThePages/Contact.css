@@ -1,6 +1,75 @@
 div div {
-    font-weight: 900;
+  font-weight: 900;
 }
-div ul li{
-    font-weight: 500;
+div ul li {
+  font-weight: 500;
+}
+
+.rounded-image-container {
+  margin-top: 10%;
+  width: 700px; /* Adjust the width as needed */
+  height: 700px; /* Adjust the height as needed */
+  overflow: hidden;
+  border-radius: 15%; /* This creates a circular shape */
+}
+
+.rounded-image {
+  width: 100%; /* Make sure the image fills the container */
+  height: 80%; /* Make sure the image fills the container */
+  object-fit: cover; /* Maintain aspect ratio while filling the container */
+}
+
+.Container {
+  display: grid;
+  grid-template-columns: 750px 600px;
+  grid-template-rows: 0px 100px;
+  margin-left: 0%; /* Or you can make it 25% to make it in the middle*/
+}
+
+.contact-form-container {
+  margin-top: 50%;
+  background-color: #f9f9f9;
+  width: 600px;
+}
+
+.contact-form {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+}
+
+.form-control {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 22px;
+}
+
+.submit-button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+.text {
+  border-radius: 8px;
+}
+
+.heading {
+  text-align: center;
 }
