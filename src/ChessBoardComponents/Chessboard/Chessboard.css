@@ -23,11 +23,11 @@
     position: absolute;
     top: calc(50% - 150px);
     left: calc(50% - 400px);
-    display: grid;
+    display: flex;
     align-items: center;
     justify-content: space-around;
-    /* height: 300px;
-    width: 800px; */
+    height: 300px;
+    width: 800px;
     background-color: rgba(127, 127, 127, 0.8);
 }
 

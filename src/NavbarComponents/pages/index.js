@@ -1,4 +1,5 @@
-export * from "./Home"
+export * from "./Tutorial"
 export * from "./About"
 export * from "./Chess"
 export * from "./Contact"
+export * from "./profile"

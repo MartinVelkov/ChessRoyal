@@ -11,11 +11,11 @@ interface Props {
 
 export default function Tile({ number, names, highlight, image, tileColor }: Props) {
   const className: string = [
-    names,
     "tile",
-    number % 2 === 0 ? "black-tile" : "white-tile",
+    tileColor, // Add tileColor to the class names
     highlight && "tile-highlight",
-    tileColor // Add tileColor to className array
+    names,
+    image && "chess-piece-tile",
   ]
     .filter(Boolean)
     .join(" ");

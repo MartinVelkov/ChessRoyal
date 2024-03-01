@@ -1,4 +1,3 @@
-
 .Chessboard {
     padding-top: 200px ;
     padding-left: 300px;
@@ -37,71 +36,7 @@ div.but .buttons{
     grid-template-rows: 0px 1100px;
 }
 
-@media only screen and (max-width: 1440px){
-    .Chessboard {
-        padding-top: 20px ;
-        margin-bottom: 25px;
-        padding-left: 50px;
-        display: grid;
-        place-content: start;
-        height: 800px;
-    }
-    
-    .Play-button{
-        margin-top: 300px ;
-        background-color: #007bff;
-        color: blue;
-        padding: 15px 45px 40px 45px;
-        font-size: 20px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        width: 300px;
-        height: 40px;
-    }
-    .Play-button &:hover{
-        background-color: #0056b3;
-    }
 
-    .paged{
-        display: grid;
-        grid-template-columns: 1100px 340px; /* Defines two columns 1250px*/
-        grid-template-rows: 0px 800px; /* Defines two rows */
-    }
-}
-
-@media only screen and (max-width: 1680px){
-    .Chessboard {
-        padding-top: 20px;
-        margin-bottom: 10px;
-        padding-left: 30px;
-        display: grid;
-        place-content: start;
-        height: 800px;
-    }
-    
-    .Play-button{
-        margin-top: 350px ;
-        background-color: #007bff;
-        color: white;
-        padding: 15px 55px 45px 55px;
-        font-size: 22px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        width: 300px;
-        height: 40px;
-    }
-    .Play-button &:hover{
-        background-color: #0056b3;
-    }
-
-    .paged{
-        display: grid;
-        grid-template-columns: 1200px 300px; /* Defines two columns 1250px*/
-        grid-template-rows: 0px 600px; /* Defines two rows */
-    }
-}
 
 @media only screen and (max-width: 1920px){
     .Chessboard {
@@ -116,7 +51,6 @@ div.but .buttons{
     .Play-button{
         margin-top: 400px ;
         background-color: #007bff;
-        color: white;
         padding: 15px 55px 45px 55px;
         font-size: 26px;
         border: none;
@@ -131,8 +65,116 @@ div.but .buttons{
 
     .paged{
         display: grid;
-        grid-template-columns: 1250px 600px; /* Defines two columns 1250px*/
-        grid-template-rows: 0px 900px; /* Defines two rows */
+        grid-template-columns: 1250px 600px; 
+        grid-template-rows: 0px 900px; 
     }
     
+}
+@media only screen and (max-width: 1680px){
+    .Chessboard {
+        padding-top: 20px;
+        margin-bottom: 10px;
+        padding-left: 30px;
+        display: grid;
+        place-content: start;
+        height: 800px;
+    }
+    
+    .Play-button{
+        margin-top: 350px ;
+        background-color: #007bff;
+        padding: 15px 55px 45px 55px;
+        font-size: 22px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 300px;
+        height: 40px;
+    }
+    .Play-button &:hover{
+        background-color: #0056b3;
+    }
+
+    .paged{
+        display: grid;
+        grid-template-columns: 1200px 300px; 
+        grid-template-rows: 0px 600px;
+    }
+}
+@media only screen and (max-width: 1513px){
+    .Chessboard {
+        padding-top: 50px ;
+        padding-left: 50px;
+        display: grid;
+        place-content: start;
+        height: 1086px;
+    }
+    div.but .buttons{
+        margin-top: 500px ;
+    
+    }
+    
+    .Play-button{
+        margin-top: 400px ;
+        padding: 15px 55px 45px 55px;
+        background-color: #0056b3;
+        font-size: 26px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 300px;
+        height: 40px;
+    }
+
+    .Play-button:hover{
+        background-color: #007bff;
+    }
+    
+    .Play{
+        color: white; 
+        text-decoration: none; 
+    }
+    
+    .paged{
+        display: grid;
+        grid-template-columns: 1150px 800px; 
+        grid-template-rows: 0px 100px;
+    }
+}
+@media only screen and (max-width: 1440px){
+    .Chessboard {
+        padding-top: 10px ;
+        margin-bottom: 25px;
+        padding-left: 50px;
+        display: grid;
+        place-content: start;
+        height: 800px;
+    }
+    
+    .Play-button{
+        margin-top: 300px ;
+        background-color: #007bff;
+        color: red;
+        padding: 15px 45px 40px 45px;
+        font-size: 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 300px;
+        height: 40px;
+    }
+    .Play-button &:hover{
+        background-color: #0056b3;
+    }
+
+    .Play{
+        color: white; 
+        text-decoration: none; 
+    }
+
+    .paged{
+        display: grid;
+        grid-template-columns: 1100px 340px; 
+        grid-template-rows: 0px 800px; 
+    }
 }

@@ -1,16 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { Board } from '../../models/Board';
 import "./desing.css"
+import { initialBoard } from "../../Constants";
 
 export function ChessTimer() {
-  const [isPlayer1Turn, setIsPlayer1Turn] = useState(true);
-  const [isRunning, setIsRunning] = useState(false);
-  const [player1Time, setPlayer1Time] = useState(180); // 3 minutes in seconds
-  const [player2Time, setPlayer2Time] = useState(180); // 3 minutes in seconds
-  const [timer, setTimer] = useState(0);
+  const [isPlayer1Turn, setIsPlayer1Turn] = useState<boolean>(true);
+  const [isRunning, setIsRunning] = useState<boolean>(false);
+  const [player1Time, setPlayer1Time] = useState<number>(180); // 3 minutes in seconds
+  const [player2Time, setPlayer2Time] = useState<number>(180); // 3 minutes in seconds
+  const [board, setBoard] = useState<Board>(initialBoard.clone());
+  const [timer, setTimer] = useState<number>(0);
 
   useEffect(() => {
-    let interval;
+    let interval: NodeJS.Timeout;
+
+    if (board.totalTurns % 2 !== 1) {
+      handleMovePiece()
+      setIsRunning(true);
+      setIsPlayer1Turn(true);
+    } else {
+      handleMovePiece()
+      setIsRunning(true);
+      setIsPlayer1Turn(false);
+    }
+
     if (isRunning) {
       interval = setInterval(() => {
         setTimer(prevTimer => prevTimer + 1);
@@ -21,9 +34,10 @@ export function ChessTimer() {
         }
       }, 1000);
     }
+
     return () => clearInterval(interval); // Clear the interval properly
   }, [isRunning, isPlayer1Turn]);
-  
+
   const handleStartPause = () => {
     setIsRunning(prevRunning => !prevRunning);
   };
@@ -42,26 +56,31 @@ export function ChessTimer() {
     } else {
       setPlayer2Time(prevTime => prevTime + 2);
     }
+
     setIsPlayer1Turn(prevTurn => !prevTurn);
   };
 
-  const formatTime = (time) => {
+  const formatTime = (time: number): string => {
     const minutes = Math.floor(time / 60).toString().padStart(2, '0');
     const seconds = (time % 60).toString().padStart(2, '0');
     return `${minutes}:${seconds}`;
   };
-  
-  if(Board.totaltuens){
+
+  if (player1Time === 0) {
+  }
+
+  if(player1Time === 0) {
 
   }
 
+  
   return (
     <div>
       <div>
         <div id='OPN'></div>
 
         <div className='shapeOPN'>
-         <span>{formatTime(player1Time)}</span>
+          <span>{formatTime(player1Time)}</span>
         </div>
   
         <div className='shapeOUR'>
@@ -70,12 +89,6 @@ export function ChessTimer() {
 
         <div id='OUR'></div> 
       </div>
-      {/* <div> */}
-        {/* <span>Current Player: {isPlayer1Turn ? 'Player 1' : 'Player 2'}</span> */}
-        {/* <button onClick={handleStartPause}>{isRunning ? 'Pause' : 'Start'}</button>
-        <button onClick={handleMovePiece}>Move Piece</button> */}
-      {/* </div> */}
     </div>
   );
 }
-

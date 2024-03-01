@@ -17,11 +17,11 @@ div.Chessboard-Chesspage {
     justify-content: end
 }
 
-@media only screen and (max-width: 1440px){
+/* @media only screen and (max-width: 1440px){
     .pager{
         display: grid;
-        grid-template-columns: 1100px 340px; /* Defines two columns 1250px*/
-        grid-template-rows: 110px 240px; /* Defines two rows */
+        grid-template-columns: 1100px 340px; 
+        grid-template-rows: 110px 240px; 
     }
     .Timer{
         margin-left: 15%;
@@ -41,8 +41,8 @@ div.Chessboard-Chesspage {
 @media only screen and (max-width: 1680px){
     .pager{
         display: grid;
-        grid-template-columns: 1180px 500px; /* Defines two columns 1250px*/
-        grid-template-rows: 100px 300px; /* Defines two rows */
+        grid-template-columns: 1180px 500px; 
+        grid-template-rows: 100px 300px; 
     }
 
     .Timer{
@@ -64,8 +64,8 @@ div.Chessboard-Chesspage {
 @media only screen and (max-width: 1920px){
     .pager{
         display: grid;
-        grid-template-columns: 1250px 500px; /* Defines two columns 1250px*/
-        grid-template-rows: 100px 300px; /* Defines two rows */   
+        grid-template-columns: 1250px 500px; 
+        grid-template-rows: 100px 300px; 
     }
     .Timer{
         margin-left: 2%;
@@ -81,4 +81,4 @@ div.Chessboard-Chesspage {
         margin-top: 5%;
         margin-bottom: 1%;
     }
-}
+} */

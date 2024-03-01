@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Profile } from "./pages";
 import { Link, NavLink } from "react-router-dom";
 
 import "./Navbar.css";
@@ -16,10 +16,16 @@ export const Navbar = () => {
           <NavLink to="/About">Статистики</NavLink>
         </li>
         <li>
+          <NavLink to="/Tutorial">Туториал</NavLink>
+        </li>
+        <li>
           <NavLink to="/Chess">Шах</NavLink>
         </li>
         <li>
           <NavLink to="/Contact">Контакт</NavLink>
+        </li>
+        <li id="Profile">
+          {Profile()}
         </li>
       </ul>
     </nav>

@@ -1,7 +1,7 @@
 import { Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
 import { Navbar } from "./NavbarComponents/Navbar";
-import { About, Contact, Chess, Home } from "./NavbarComponents/pages";
+import { About, Contact, Chess, Tutorial, Profile } from "./NavbarComponents/pages";
 import { ChessPage } from "./ChessBoardComponents/Chesspage/chessPage";
 import SignUp from "./ChessBoardComponents/signUp";
 import LogIn from "./ChessBoardComponents/login/logIn";
@@ -72,8 +72,8 @@ function App() {
           <Navbar />
           <Routes>
             <Route
-              path="/home"
-              element={<PrivateRoute element={<Home />} user={user} />}
+              path="/Tutorial"
+              element={<PrivateRoute element={<Tutorial />} user={user} />}
             />
             <Route
               path="/about"
