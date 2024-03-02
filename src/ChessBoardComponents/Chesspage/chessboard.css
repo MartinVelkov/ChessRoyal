@@ -1,7 +1,7 @@
 .pager{
     display: grid;
     grid-template-columns: 1250px 500px; /* Defines two columns 1250px*/
-    grid-template-rows: 100px 300px; /* Defines two rows */
+    grid-template-rows: 0px 300px; /* Defines two rows */
     
 }
 div.Chessboard-Chesspage {
@@ -9,11 +9,11 @@ div.Chessboard-Chesspage {
     place-items: start;
     height: 100%; 
     margin-left: 5%;
-    margin-top: 3%;
+    margin-top: 0.1%;
     margin-bottom: 1%;
 }
 .Timer{
-    margin-top: 65%;
+    margin-top: 60%;
     justify-content: end
 }
 
