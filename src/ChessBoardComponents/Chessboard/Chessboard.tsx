@@ -318,6 +318,7 @@ import "./Chessboard.css";
 import Tile from "../Tile/Tile";
 import { VERTICAL_AXIS, HORIZONTAL_AXIS, GRID_SIZE } from "../../Constants";
 import { Piece, Position } from "../../models";
+import Brightness5Icon from '@mui/icons-material/Brightness5';
 
 interface Props {
   playMove: (piece: Piece, position: Position) => boolean;
@@ -334,21 +335,34 @@ export default function Chessboard({ playMove, pieces }: Props) {
   const colorTemplates = [
     { name: "Default", white: "#ebecd0", black: "#779556" },
     { name: "Light", white: "#f0f0f0", black: "#d3d3d3" },
-    { name: "Dark", white: "#ffffff", black: "#000000" }
+    { name: "Dark", white: "#ffffff", black: "#000000" },
     // Add more color templates as needed
   ];
 
   const handleColorChange = () => {
-    const templateNames = colorTemplates.map(template => template.name).join("\n");
-    const selectedTemplateName = prompt(`Choose a color template:\n${templateNames}`) || "Default";
-    const selectedTemplate = colorTemplates.find(template => template.name === selectedTemplateName);
+    const templateNames = colorTemplates
+      .map((template) => template.name)
+      .join("\n");
+    const selectedTemplateName =
+      prompt(`Choose a color template:\n${templateNames}`) || "Default";
+    const selectedTemplate = colorTemplates.find(
+      (template) => template.name === selectedTemplateName
+    );
 
     if (selectedTemplate) {
-      const whiteTiles = document.querySelectorAll(".white-tile") as NodeListOf<HTMLElement>;
-      const blackTiles = document.querySelectorAll(".black-tile") as NodeListOf<HTMLElement>;
+      const whiteTiles = document.querySelectorAll(
+        ".white-tile"
+      ) as NodeListOf<HTMLElement>;
+      const blackTiles = document.querySelectorAll(
+        ".black-tile"
+      ) as NodeListOf<HTMLElement>;
 
-      whiteTiles.forEach(tile => (tile.style.backgroundColor = selectedTemplate.white));
-      blackTiles.forEach(tile => (tile.style.backgroundColor = selectedTemplate.black));
+      whiteTiles.forEach(
+        (tile) => (tile.style.backgroundColor = selectedTemplate.white)
+      );
+      blackTiles.forEach(
+        (tile) => (tile.style.backgroundColor = selectedTemplate.black)
+      );
     } else {
       alert("Invalid template name. Using default colors.");
     }
@@ -427,6 +441,74 @@ export default function Chessboard({ playMove, pieces }: Props) {
       setActivePiece(null);
     }
   }
+  let listadder = [];
+
+  let pawnW = 'url("assets/images/pawn_w.png")';
+  let pawnB = 'url("assets/images/pawn_b.png")';
+  let bishopW = 'url("assets/images/bishop_w.png")';
+  let bishopB = 'url("assets/images/bishop_b.png")';
+  let rookW = 'url("assets/images/rook_w.png")';
+  let rookB = 'url("assets/images/rook_b.png")';
+  let queenW = 'url("assets/images/queen_w.png")';
+  let queenB = 'url("assets/images/queen_b.png")';
+  let princeW = 'url("assets/images/prince_w.png")';
+  let princeB = 'url("assets/images/prince_b.png")';
+  let princessW = 'url("assets/images/princess_w.png")';
+  let princessB = 'url("assets/images/princess_b.png")';
+  let knightW = 'url("assets/images/knight_w.png")';
+  let knightB = 'url("assets/images/knight_b.png")';
+  let kingsW = 'url("assets/images/king_w.png")';
+  let kingsB = 'url("assets/images/king_b.png")';
+
+  if (
+    activePiece?.style.backgroundImage === pawnW ||
+    activePiece?.style.backgroundImage === pawnB
+  ) {
+    listadder.push("");
+    // console.log( "" );
+  } else if (
+    activePiece?.style.backgroundImage === bishopW ||
+    activePiece?.style.backgroundImage === bishopB
+  ) {
+    listadder.push("B");
+    // console.log("B");
+  } else if (
+    activePiece?.style.backgroundImage === rookW ||
+    activePiece?.style.backgroundImage === rookB
+  ) {
+    listadder.push("R");
+    // console.log("R");
+  } else if (
+    activePiece?.style.backgroundImage === queenW ||
+    activePiece?.style.backgroundImage === queenB
+  ) {
+    listadder.push("Q");
+    // console.log("Q");
+  } else if (
+    activePiece?.style.backgroundImage === princeW ||
+    activePiece?.style.backgroundImage === princeB
+  ) {
+    listadder.push("PC");
+    // console.log("PC");
+  } else if (
+    activePiece?.style.backgroundImage === knightW ||
+    activePiece?.style.backgroundImage === knightB
+  ) {
+    listadder.push("N");
+    // console.log("N");
+  } else if (
+    activePiece?.style.backgroundImage === princessW ||
+    activePiece?.style.backgroundImage === princessB
+  ) {
+    listadder.push("PS");
+    // console.log("PS");
+  } else if (
+    activePiece?.style.backgroundImage === kingsW ||
+    activePiece?.style.backgroundImage === kingsB
+  ) {
+    listadder.push("K");
+    // console.log("K");
+  }
 
   let board = [];
 
@@ -439,7 +521,7 @@ export default function Chessboard({ playMove, pieces }: Props) {
       let currentSquare = String(VERTICAL_AXIS[j]) + String(HORIZONTAL_AXIS[i]);
 
       let currentPiece =
-         activePiece != null
+        activePiece != null
           ? pieces.find((p) => p.samePosition(grabPosition))
           : undefined;
       let highlight = currentPiece?.possibleMoves
@@ -465,6 +547,10 @@ export default function Chessboard({ playMove, pieces }: Props) {
 
   return (
     <>
+      <div>
+        <button onClick={handleColorChange}></button>
+      </div>
+
       <div
         onMouseMove={(e) => movePiece(e)}
         onMouseDown={(e) => grabPiece(e)}
@@ -474,9 +560,6 @@ export default function Chessboard({ playMove, pieces }: Props) {
       >
         {board}
       </div>
-      {/* <div>
-        <button onClick={handleColorChange}>Смени цвета на полетата</button>
-      </div> */}
     </>
   );
 }
