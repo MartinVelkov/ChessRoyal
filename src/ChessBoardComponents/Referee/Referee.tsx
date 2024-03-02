@@ -265,13 +265,15 @@ import { Board } from "../../models/Board";
 import { Pawn } from "../../models/Pawn";
 import { PieceType, TeamType } from "../../Types";
 import Chessboard from "../Chessboard/Chessboard";
-// import { ChessTimer } from "../Timer/3Min";
+import { ChessTimer } from "../Timer/3Min";
 
 export default function Referee() {
   const [board, setBoard] = useState<Board>(initialBoard.clone());
   const [promotionPawn, setPromotionPawn] = useState<Piece>();
   const modalRef = useRef<HTMLDivElement>(null);
   const checkmateModalRef = useRef<HTMLDivElement>(null);
+
+  
 
   function playMove(playedPiece: Piece, destination: Position): boolean {
     // If the playing piece doesn't have any moves return
@@ -316,7 +318,7 @@ export default function Referee() {
         checkmateModalRef.current?.classList.remove("hidden");
       }
 
-      // ChessTimer()
+      
       return clonedBoard;
     });
 
@@ -436,8 +438,9 @@ export default function Referee() {
             <button onClick={restartGame}>Играй отново</button>
           </div>
         </div>
-      </div>
+      </div> 
       <Chessboard playMove={playMove} pieces={board.pieces} />
     </>
   );
 }
+
