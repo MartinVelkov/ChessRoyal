@@ -2,8 +2,11 @@ import * as React from "react";
 import "../Stats/dashboard.css";
 import { LineChart, PieChart } from "@mui/x-charts";
 
-let Width = Number((window.screen.width / 3.49).toFixed(0));
-let Height = Number((window.screen.height / 3.49).toFixed(0));
+// let Width = Number((window.screen.width / 3.49).toFixed(0));
+// let Height = Number((window.screen.height / 3.49).toFixed(0));
+
+let Height = 270
+let Width = 530
 
 const pData1 = [1300, 1250, 1000, 900, 1050, 920, 1100];
 const pData2 = [1200, 950, 800, 930, 850, 990, 910];

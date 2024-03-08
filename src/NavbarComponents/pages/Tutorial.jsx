@@ -4,6 +4,7 @@ import { VideoComponent1 } from "../../ChessBoardComponents/fun/video";
 import { VideoComponent2 } from "../../ChessBoardComponents/fun/princess";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
+import Poper from "../../ChessBoardComponents/buttons/poper"
 
 export const Tutorial = () => {
   return (
@@ -33,6 +34,7 @@ export const Tutorial = () => {
           </div>
         </Box>
       </Container>
+      <Poper></Poper>
     </div>
   );
 };

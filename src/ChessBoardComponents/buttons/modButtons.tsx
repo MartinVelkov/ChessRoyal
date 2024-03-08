@@ -17,7 +17,7 @@ export default function ButtonGroupColors() {
         color="primary"
         aria-label="primary button group"
       >
-        <Button onClick={createOnClick('soft')}> 1+0</Button>
+        <Button onClick={createOnClick('soft')}>1+0</Button>
         <Button onClick={createOnClick('soft')}>2+1</Button>
         <Button onClick={createOnClick('soft')}>3+0</Button>
   

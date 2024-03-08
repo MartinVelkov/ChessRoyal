@@ -9,6 +9,7 @@
 // import { invertChessboard } from "../algorythm/algorythm";
 // import { ChessTimer } from "../Timer/3Min";
 
+
 // interface ChessPiece {
 //   image: string;
 //   position: any;
@@ -39,6 +40,7 @@
 //   //   socket.on("connect", () => {
 //   //     console.log("connected!");
 //   //     console.log("New player connected: ", socket.id);
+      
 
 //   //     // When play button is pressed
 //   //     socket.on("play", (playerName: string) => {
@@ -47,7 +49,7 @@
 //   //       // socket.emit('playPressed', playerName);
 //   //     });
 //   //     console.log("first Socket failed");
-
+      
 //   //     // Handle 'playPressed' event from the server
 //   //     socket.on("playPressed", (playerName: string) => {
 //   //       console.log(`${playerName} pressed the play button.`);
@@ -265,30 +267,13 @@ import { PieceType, TeamType } from "../../Types";
 import Chessboard from "../Chessboard/Chessboard";
 import { ChessTimer } from "../Timer/3Min";
 
-let moves = 0;
-
-class Timer {
-  private chessTimer: ChessTimer;
-
-  constructor(chessTimer: ChessTimer) {
-      this.chessTimer = chessTimer;
-  }
-
-  someMethod(): void {
-      // Call handleMovePiece from ChessTimer
-      this.chessTimer.handleMovePiece();
-  }
-}
-
-export function Moves() {
-  return Number(moves);
-}
-
 export default function Referee() {
   const [board, setBoard] = useState<Board>(initialBoard.clone());
   const [promotionPawn, setPromotionPawn] = useState<Piece>();
   const modalRef = useRef<HTMLDivElement>(null);
   const checkmateModalRef = useRef<HTMLDivElement>(null);
+
+  
 
   function playMove(playedPiece: Piece, destination: Position): boolean {
     // If the playing piece doesn't have any moves return
@@ -333,6 +318,7 @@ export default function Referee() {
         checkmateModalRef.current?.classList.remove("hidden");
       }
 
+      
       return clonedBoard;
     });
 
@@ -416,10 +402,6 @@ export default function Referee() {
     setBoard(initialBoard.clone());
   }
 
-  moves = board.totalTurns;
-  ChessTimer()
-  console.log("Refer");
-  
   return (
     <>
       <div className="modal hidden" ref={modalRef}>
@@ -456,8 +438,9 @@ export default function Referee() {
             <button onClick={restartGame}>Играй отново</button>
           </div>
         </div>
-      </div>
+      </div> 
       <Chessboard playMove={playMove} pieces={board.pieces} />
     </>
   );
 }
+
