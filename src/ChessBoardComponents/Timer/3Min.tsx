@@ -3,12 +3,14 @@ import React, { useState, useEffect } from "react";
 import { Board } from "../../models/Board";
 import "./desing.css";
 import { initialBoard } from "../../Constants";
+import { Moves } from "../Referee/Referee"; 
 
 interface ChessTimerProps {
   onTimerEnd: () => void; // Define prop for timer end callback
 }
 
-export function ChessTimer(isPlayer1Turn: boolean) {
+export function ChessTimer() {
+  const [isPlayer1Turn , setIsPlayer1Turn] = useState<boolean>(true)
   const [isRunning, setIsRunning] = useState<boolean>(false);
   const [player1Time, setPlayer1Time] = useState<number>(180); // 3 minutes in seconds
   const [player2Time, setPlayer2Time] = useState<number>(180); // 3 minutes in seconds
@@ -19,15 +21,15 @@ export function ChessTimer(isPlayer1Turn: boolean) {
     let interval: NodeJS.Timeout;
 
     if (board.totalTurns % 2 !== 1) {
-      handleMovePiece();
+      setIsPlayer1Turn(true)
       setIsRunning(true);
-      setIsPlayer1Turn(true);
     } else {
-      handleMovePiece();
+      setIsPlayer1Turn(false)
       setIsRunning(true);
-      setIsPlayer1Turn(false);
     }
 
+    console.log(board);
+    
     if (isRunning) {
       interval = setInterval(() => {
         setTimer((prevTimer) => prevTimer + 1);
@@ -40,7 +42,7 @@ export function ChessTimer(isPlayer1Turn: boolean) {
     }
 
     return () => clearInterval(interval); // Clear the interval properly
-  }, [isRunning, isPlayer1Turn]);
+  }, [board, isRunning, isPlayer1Turn]);
 
   useEffect(() => {
     // Check for timer end
@@ -95,3 +97,5 @@ export function ChessTimer(isPlayer1Turn: boolean) {
     </div>
   );
 }
+
+

@@ -319,6 +319,7 @@ import Tile from "../Tile/Tile";
 import { VERTICAL_AXIS, HORIZONTAL_AXIS, GRID_SIZE } from "../../Constants";
 import { Piece, Position } from "../../models";
 import Brightness5Icon from '@mui/icons-material/Brightness5';
+import { ChessTimer } from "../Timer/3Min";
 
 interface Props {
   playMove: (piece: Piece, position: Position) => boolean;
@@ -360,6 +361,7 @@ export default function Chessboard({ playMove, pieces }: Props) {
       whiteTiles.forEach(
         (tile) => (tile.style.backgroundColor = selectedTemplate.white)
       );
+
       blackTiles.forEach(
         (tile) => (tile.style.backgroundColor = selectedTemplate.black)
       );
@@ -550,7 +552,6 @@ export default function Chessboard({ playMove, pieces }: Props) {
       <div>
         <button onClick={handleColorChange}></button>
       </div>
-
       <div
         onMouseMove={(e) => movePiece(e)}
         onMouseDown={(e) => grabPiece(e)}
