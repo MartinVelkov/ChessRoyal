@@ -11,7 +11,8 @@ export default function MenuSimple() {
     console.log(`Clicked on ${menuItem}`);
     handleColorChange(menuItem); // Call handleColorChange directly here
   };
-
+   console.log("here");
+   
   return (
     <Dropdown>
       <MenuButton>My account</MenuButton>
